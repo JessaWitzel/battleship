@@ -38,7 +38,7 @@ def test_collides_true():
 
 def test_place_ship_ns():
     board = Board()
-    ship = {'letter': 'C', 'size': 2}
+    ship = {'code': 'C', 'size': 2}
 
     board.place_ship(0, 0, ship, 'NS')
     assert board[0][0] == 'C'
@@ -47,7 +47,7 @@ def test_place_ship_ns():
 
 def test_place_ship_ew():
     board = Board()
-    ship = {'letter': 'C', 'size': 2}
+    ship = {'code': 'C', 'size': 2}
 
     board.place_ship(0, 0, ship, 'EW')
     assert board[0][0] == 'C'
@@ -56,7 +56,7 @@ def test_place_ship_ew():
 
 def test_place_ship_exc():
     board = Board()
-    ship = {'letter': 'C', 'size': 2}
+    ship = {'code': 'C', 'size': 2}
 
     with pytest.raises(IndexError) as excinfo:
         board.place_ship(0, 9, ship, 'NS')

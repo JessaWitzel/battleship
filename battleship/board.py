@@ -1,6 +1,12 @@
 DIRECTIONS = ('NS', 'EW')
 SEA = 'S'
-
+SHIPS = [
+    {'type':'carrier','size': 5, 'code': 'C'},
+    {'type': 'battleship', 'size': 4, 'code': 'B'},
+    {'type': 'cruiser', 'size': 3, 'code': 'R'},
+    {'type': 'submarine', 'size': 3, 'code': 'U'},
+    {'type': 'destroyer', 'size': 2, 'code': 'D'},
+]
 
 class Board(object):
     def __init__(self):
@@ -27,7 +33,7 @@ class Board(object):
         sequence = self.get_sequence(col, row, ship['size'], direction)
         if not collides(sequence):
             for r, c in sequence['indices']:
-                self.board[r][c] = ship['letter']
+                self.board[r][c] = ship['code']
 
 
 def collides(sequence):
