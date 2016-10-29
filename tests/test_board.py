@@ -1,32 +1,39 @@
 import pytest
-from battleship.board import Board
+from battleship.board import (
+    Board,
+    collides,
+)
+
 
 def test_get_sequence():
     board = Board()
     board[0][0] = 'C'
     board[1][0] = 'C'
 
-    assert board.get_sequence(0, 0, 3, 'NS') == ['C', 'C', 'S']
-    assert board.get_sequence(0, 0, 2, 'EW') == ['C', 'S']
+    ns_seq = board.get_sequence(0, 0, 3, 'NS')
+    assert ns_seq == {'values': ['C', 'C', 'S'],
+                      'indices': [(0, 0), (1, 0), (2, 0)]}
 
-def test_collides_ns():
+    ew_seq = board.get_sequence(0, 0, 2, 'EW')
+    assert ew_seq == {'values': ['C', 'S'],
+                      'indices': [(0, 0), (0, 1)]}
+
+
+def test_get_sequence_exc():
     board = Board()
-    board[0][0] = 'C'
-    board[1][0] = 'C'
-
-    ship = {'size': 2}
-    assert board.collides(0, 0, ship, 'NS')
-    assert not board.collides(1, 0, ship, 'NS')
+    with pytest.raises(ValueError) as excinfo:
+        board.get_sequence(0, 0, 2, 'SE')
+    assert 'invalid direction' in str(excinfo.value)
 
 
-def test_collides_ew():
-    board = Board()
-    board[2][2] = 'C'
-    board[2][3] = 'C'
+def test_collides_false():
+    sequence = {'values': ['S', 'S', 'S']}
+    assert not collides(sequence)
 
-    ship = {'size': 3}
-    assert board.collides(0, 2, ship, 'EW')
-    assert not board.collides(4, 2, ship, 'EW')
+
+def test_collides_true():
+    sequence = {'values': ['S', 'S', 'C']}
+    assert collides(sequence)
 
 
 def test_place_ship_ns():
