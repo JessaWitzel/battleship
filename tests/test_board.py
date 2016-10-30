@@ -11,11 +11,11 @@ def test_get_sequence():
     board[1][0] = 'C'
 
     ns_seq = board.get_sequence(0, 0, 3, 'NS')
-    assert ns_seq == {'values': ['C', 'C', 'S'],
+    assert ns_seq == {'values': ['C', 'C', 'O'],
                       'indices': [(0, 0), (1, 0), (2, 0)]}
 
     ew_seq = board.get_sequence(0, 0, 2, 'EW')
-    assert ew_seq == {'values': ['C', 'S'],
+    assert ew_seq == {'values': ['C', 'O'],
                       'indices': [(0, 0), (0, 1)]}
 
 
@@ -27,12 +27,12 @@ def test_get_sequence_exc():
 
 
 def test_collides_false():
-    sequence = {'values': ['S', 'S', 'S']}
+    sequence = {'values': ['O', 'O', 'O']}
     assert not collides(sequence)
 
 
 def test_collides_true():
-    sequence = {'values': ['S', 'S', 'C']}
+    sequence = {'values': ['O', 'O', 'C']}
     assert collides(sequence)
 
 

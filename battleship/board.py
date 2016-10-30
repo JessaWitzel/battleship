@@ -1,5 +1,5 @@
 DIRECTIONS = ('NS', 'EW')
-SEA = 'S'
+OCEAN = 'O'
 SHIPS = [
     {'type':'carrier','size': 5, 'code': 'C'},
     {'type': 'battleship', 'size': 4, 'code': 'B'},
@@ -10,7 +10,7 @@ SHIPS = [
 
 class Board(object):
     def __init__(self):
-        self.board = [[SEA for _ in range(10)] for _ in range(10)]
+        self.board = [[OCEAN for _ in range(10)] for _ in range(10)]
 
     def __getitem__(self, i):
         return self.board[i]
@@ -37,4 +37,4 @@ class Board(object):
 
 
 def collides(sequence):
-    return not all([s == SEA for s in sequence['values']])
+    return not all([s == OCEAN for s in sequence['values']])
