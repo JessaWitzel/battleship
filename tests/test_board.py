@@ -70,8 +70,8 @@ def test_attack_hit():
 
     result = board.attack(0, 0)
     assert result == 'Hit! 0:0'
+    assert board[0][0] == 'H'
     assert board.hit_ships == ['C']
-    assert board.attacks == [(0, 0)]
 
 
 def test_attack_miss():
@@ -79,14 +79,5 @@ def test_attack_miss():
 
     result = board.attack(0, 1)
     assert result == 'Miss. 0:1'
+    assert board[0][1] == 'M'
     assert board.hit_ships == []
-    assert board.attacks == [(0, 1)]
-
-
-def test_attack_dupe():
-    board = Board()
-    board.attack(0, 2)
-
-    with pytest.raises(ValueError) as excinfo:
-        board.attack(0, 2)
-    assert 'Already attacked' in str(excinfo.value)
