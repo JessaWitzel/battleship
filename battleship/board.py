@@ -12,7 +12,9 @@ class Board(object):
 
     def attack(self, row, col):
         spot = self.board[row][col]
-        if spot != OCEAN:
+        if spot == 'H':
+            return "You have already fired and hit a ship at that location. Try again."
+        elif spot != OCEAN:
             self.board[row][col] = 'H'
             self.hit_ships.append(spot)
             return "Hit! {}:{}".format(row, col)
