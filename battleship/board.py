@@ -22,12 +22,12 @@ class Board(object):
             self.board[row][col] = 'M'
             return "Miss. {}:{}".format(row, col)
 
-    def get_sequence(self, col, row, sequence_size, direction):
+    def get_sequence(self, start_col, start_row, ship_size, direction):
         if direction not in DIRECTIONS:
             raise ValueError("invalid direction use: {}".format(DIRECTIONS))
 
         sequence = {'values': [], 'indices': []}
-        for _ in range(0, sequence_size):  # style note: _ for unnec var name
+        for _ in range(0, ship_size):  # style note: _ for unnec var name
             sequence['values'].append(self.board[row][col])
             sequence['indices'].append((row, col))
             if direction == DIRECTIONS[0]:
