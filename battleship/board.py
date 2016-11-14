@@ -1,12 +1,26 @@
 DIRECTIONS = ('NS', 'EW')
 OCEAN = 'O'
 
+
 class Board(object):
     def __init__(self):
         self.board = [[OCEAN for _ in range(10)] for _ in range(10)]
+        self.hit_ships = []
 
     def __getitem__(self, i):
         return self.board[i]
+
+    def attack(self, row, col):
+        spot = self.board[row][col]
+        if spot == 'H':
+            return "You have already fired and hit a ship at that location. Try again."
+        elif spot != OCEAN:
+            self.board[row][col] = 'H'
+            self.hit_ships.append(spot)
+            return "Hit! {}:{}".format(row, col)
+        else:
+            self.board[row][col] = 'M'
+            return "Miss. {}:{}".format(row, col)
 
     def get_sequence(self, col, row, sequence_size, direction):
         if direction not in DIRECTIONS:

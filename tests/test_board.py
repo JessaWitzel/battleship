@@ -61,3 +61,23 @@ def test_place_ship_exc():
     with pytest.raises(IndexError) as excinfo:
         board.place_ship(0, 9, ship, 'NS')
     assert 'index out of range' in str(excinfo.value)
+
+
+def test_attack_hit():
+    board = Board()
+    board[0][0] = 'C'
+    board[0][1] = 'C'
+
+    result = board.attack(0, 0)
+    assert result == 'Hit! 0:0'
+    assert board[0][0] == 'H'
+    assert board.hit_ships == ['C']
+
+
+def test_attack_miss():
+    board = Board()
+
+    result = board.attack(0, 1)
+    assert result == 'Miss. 0:1'
+    assert board[0][1] == 'M'
+    assert board.hit_ships == []
