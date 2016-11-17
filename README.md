@@ -1,13 +1,13 @@
-Getting Started
-===============
+Getting Started as a Contributor
+================================
 
-You'll want to create a virtualenv.
+First create a virtualenv.
 
     mkdir -p ~/venv/battleship
     virtualenv --no-site-packages ~/venv/battleship
     source ~/venv/battleship/bin/activate
 
-Then you'll want to fetch the code and install the requirements.
+Then fetch the code and install the requirements.
 
     git clone https://github.com/JessaWitzel/battleship.git
     cd battleship
