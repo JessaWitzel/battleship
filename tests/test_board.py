@@ -3,6 +3,7 @@ from battleship.board import (
     Board,
     collides,
 )
+import battleship.ships
 
 
 def test_get_sequence():
@@ -81,3 +82,10 @@ def test_attack_miss():
     assert result == 'Miss. 0:1'
     assert board[0][1] == 'M'
     assert board.hit_ships == []
+
+def test_sank_oneship():
+    board = Board()
+    board.hit_ships = ['C', 'C', 'C', 'C', 'C']
+
+    assert board.sank(battleship.ships.CARRIER) == "You sank my carrier!"
+    assert board.sank(battleship.ships.BATTLESHIP) == None

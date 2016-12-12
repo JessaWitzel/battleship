@@ -42,6 +42,11 @@ class Board(object):
             for r, c in sequence['indices']:
                 self.board[r][c] = ship['code']
 
+    def sank(self, ship):
+        if self.hit_ships.count(ship['code']) == ship['size']:
+            return "You sank my %s!" %ship['type']
+
+
 
 def collides(sequence):
     return not all([s == OCEAN for s in sequence['values']])
