@@ -1,10 +1,11 @@
 DIRECTIONS = ('NS', 'EW')
 OCEAN = 'O'
-hit_ships = ()
+
 
 class Board(object):
     def __init__(self):
         self.board = [[OCEAN for _ in range(10)] for _ in range(10)]
+        self.hit_ships = []
 
     def __getitem__(self, i):
         return self.board[i]
