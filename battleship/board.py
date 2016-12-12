@@ -1,5 +1,6 @@
 DIRECTIONS = ('NS', 'EW')
 OCEAN = 'O'
+hit_ships = ()
 
 class Board(object):
     def __init__(self):
@@ -26,12 +27,12 @@ class Board(object):
 
         sequence = {'values': [], 'indices': []}
         for _ in range(0, ship_size):  # style note: _ for unnec var name
-            sequence['values'].append(self.board[row][col])
-            sequence['indices'].append((row, col))
+            sequence['values'].append(self.board[start_row][start_col])
+            sequence['indices'].append((start_row, start_col))
             if direction == DIRECTIONS[0]:
-                row += 1
+                start_row += 1
             else:
-                col += 1
+                start_col += 1
         return sequence
 
     def place_ship(self, col, row, ship, direction):
