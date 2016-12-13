@@ -6,6 +6,7 @@ class Board(object):
     def __init__(self):
         self.board = [[OCEAN for _ in range(10)] for _ in range(10)]
         self.hit_ships = []
+        self.sank_ships = []
 
     def __getitem__(self, i):
         return self.board[i]
@@ -45,7 +46,13 @@ class Board(object):
     def sank(self, ship):
         if self.hit_ships.count(ship['code']) == ship['size']:
             return "You sank my %s!" %ship['type']
+            sank_ships.append(ship['code'])
+            return end_game()
 
+    def end_game(self):
+        if len(self.sank_ships) == 5:
+            return "That was my last ship! You win!"
+            quit()
 
 
 def collides(sequence):
