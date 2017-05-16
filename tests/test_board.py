@@ -89,3 +89,15 @@ def test_sank_oneship():
 
     assert board.sank(battleship.ships.CARRIER) == "You sank my carrier!"
     assert board.sank(battleship.ships.BATTLESHIP) == None
+
+def test_ended_game():
+    board = Board()
+    board.sank_ships = ['C', 'B', 'R', 'U', 'D']
+
+    assert board.end_game() == "That was my last ship! You win!"
+
+def test_not_ended_game():
+    board = Board()
+    board.sank_ships = ['C']
+
+    assert board.end_game() == None

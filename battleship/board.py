@@ -1,6 +1,6 @@
 DIRECTIONS = ('NS', 'EW')
 OCEAN = 'O'
-
+##Doing this to show Geoff how to push things
 
 class Board(object):
     def __init__(self):
@@ -42,6 +42,18 @@ class Board(object):
         if not collides(sequence):
             for r, c in sequence['indices']:
                 self.board[r][c] = ship['code']
+
+    def user_place(self):
+        for ship in ships:
+            print "Where would you like to place your %s?" %ship['type']
+            col = raw_input['Column: ']
+            row = raw_input['Row: ']
+            choice = raw_input['Do you want to orient that ship North/South?']
+            if 'y' in choice:
+                direction = 'NS'
+            else:
+                direction = 'EW'
+            return self.place_ship(col, row, ship[type], direction)
 
     def sank(self, ship):
         if self.hit_ships.count(ship['code']) == ship['size']:
